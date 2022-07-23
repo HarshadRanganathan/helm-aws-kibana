@@ -1,0 +1,14 @@
+fullname: kibana
+elasticsearchHosts: ""
+namespace: platform
+ingress:
+  enabled: true
+  annotations: 
+    alb.ingress.kubernetes.io/tags: Stage=prod,App=kibana
+    alb.ingress.kubernetes.io/certificate-arn: <acm-arn>
+    alb.ingress.kubernetes.io/load-balancer-attributes: access_logs.s3.enabled=true,access_logs.s3.bucket=prod-us-east-1,idle_timeout.timeout_seconds=600,access_logs.s3.prefix=kibana
+    kubernetes.io/ingress.class: alb
+    kubernetes.io/tls-acme: "true"
+  path: /*
+  hosts:
+    - 
